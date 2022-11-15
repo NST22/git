@@ -1,285 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<style>
-   body {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+      body {
+  font-family: arial, sans-serif;
   background-image: url('https://images.unsplash.com/photo-1541119638723-c51cbe2262aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80');
-
-
   background-size: 100%;
 }
-   .first{
-      margin-right: 0;
-      display:inline-block;
-      text-align: center;
-      margin-left: 30px;
-      
-   }
-   .firstOne{
-      color:darkblue;
+
+h1 {
+    color:darkblue;
       text-decoration: solid;
       text-shadow: 2px 2px beige;
       font-size: 40px;
       font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
 
-   }
-   h4{
-      
-      font-family: 'Times New Roman', Times, serif;
-      color:black;
+ul {
+  margin: 0;
+  padding: 0;
+}
 
-   }
-   .three{
-      text-align: right;
-      margin-left: 70%;
-      display:inline-block;
-   }
-   .four{
-      margin-left: 0px;   
-      color: #08519c;
-      text-decoration: solid;
-      text-shadow: 1px 1px #6baed6;
-      font-size: 25px;
-      font-family: 'Times New Roman', Times, serif;  
-      text-align: left;
-      
-   }
-   h2{
-      font-size: 50px;
-      text-align: left;
-      color: blue;
-      text-shadow: 1px 1px darkblue;
-      font-family: 'Times New Roman', Times, serif;
-   }
-  
-   .fourOne{
-      padding: 0%;
-      margin-left: 10px;
-      margin-right: 10px;
-      width: 80%;
-   }
-   .temperature{
-    font-size: 20px;
-    vertical-align: top;
-   }
-   .weather{
-    width: 70px;
-   }
-   .container{
-    width: 1000px;
-    height: 600px;
-   } 
-</style>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-   <div class="container">
-    
-    <form id = "search-form" 
-    action="" 
-    style="margin-left: 30px; margin-top: 50px; font-family:'Times New Roman', Times, serif">
-        <input type="search" 
-        placeholder="Input a city" 
-        autofocus = "on" id ="search-city">
-       
-         <button id="Search"> Search</button>
-        <button id="CurrentLocation"> Current location</button>
-    
-    </form>
-    
-   
-     <div class="first">
-        <h1 class="firstOne" id="City">
-            Kyiv, Ukraine
-        </h1>    
-       
-   </div>
-   
-   
- <hr>
- <div style="margin-left: 30px">
-   <h3 style="font-family:'Times New Roman', Times, serif"></h3> 
-   <script>
-    let now = new Date();
-    let h3 = document.querySelector("h3");
-    let day = now.getDay();
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
-    function pad(value){
-        if (value<10) {
-            return '0'+ value;
-        }
-        else {
-            return value;
-        }
-    }  
-    //let second = now.getSeconds();
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    let Weeks = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-        ];
-    let Days = Weeks[now.getDay()];
-    let minutes1 = pad(minutes);
-    let hours1 = pad(hours);
-    h3.innerHTML = `${Days} ${hours1}:${minutes1}`;
-    
-    
-        </script>
-   <div>
-    <h5 style="font-family:'Times New Roman', Times, serif">Cloudy</h5>
-    
-   </div>
- </div> 
- <br>
- <div style="margin-left: 30px">
-    <div class="container text-left" style="margin:0px">
-        <div class="row align-items-start" >
-          <div class="col-6" style="margin-left:0px; width:70px">
-            <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="Cloudy icon" class="weather">
-            
-            
-          </div>
-          <div class="col-6" style="width:150px">
-            <span id="temperature1" style="font-size:50px; font-family:'Times New Roman', Times, serif">
-                19 
-                   </span>
-                   <span class="temperature">
-                   <a href="#" id="Celsium">°C</a> |
-                   <a href="#" id="Fahrenheit">°F</a>
-                   </span>
-                   
-          </div>
-          <div class="col-6" style="margin-left:70px">
-            <ul  style="font-size:20px; font-family:'Times New Roman', Times, serif; margin-left: 2px; text-align: left; color: #08519c;
-            text-decoration: solid;
-            text-shadow: 1px 1px #6baed6; list-style-type:none;">
-                <li id="Precipitation">
-                    Precipitation: 0% 
-                </li>
-                <li id="Humidity">
-                    Humidity: 61 %
-                </li>
-                <li id="Wind">
-                    Wind: 18 km/h
-                </li>
+  color: darkblue;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 19px;
+}
+
+li:first-letter {
+  text-transform: capitalize;
+}
+
+.weather-app-wrapper {
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.weather-app{
+    max-width: 600px;
+    max-height: 500px;
+    margin: 30px auto;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+   }
+
+.overview {
+  margin-bottom: 20px;
+}
+
+.weather-temperature img {
+  margin-right: 5px;
+  height: 64px;
+  width: 64px;
+}
+
+.weather-temperature strong {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.weather-temperature .units {
+  position: relative;
+  font-size: 16px;
+  top: -34px;
+}
+
+.weather-temperature .active {
+  color: rgb(33, 33, 33);
+  cursor: default;
+}
+
+.weather-temperature .active:hover {
+  text-decoration: none;
+}
+
+.weather-forecast {
+  margin-top: 20px;
+  text-align: center;
+  color: #000;
+}
+
+.weather-forecast-date {
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+.weather-forecast-temperature-min {
+  opacity: 0.5;
+}
+
+.weather-forecast-temperatures {
+  font-size: 13px;
+}
+    </style>
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <form id="search-form" class="mb-3">
+            <div class="row">
+              <div class="col-6">
+                              
+                <form id = "search-form" 
+                        action="" 
+                        style=" margin-top: 50px; font-family:'Times New Roman', Times, serif">
+                    <input type="search" 
+                            placeholder="Input a city" 
+                            autofocus = "on" 
+                            autocomplete="off"
+                            class="form-control"
+                            id ="city-input">
+                </form>
+                </div>
+                <div class="col-2">
+                    <button id="Search"> Search </button>          
+                </div>
+                <div>
+                    <button id="CurrentLocation"> Current location</button>
+                </div>
+            </div>
+          
+          <div class="overview">
+            <h1 id="city"></h1>
+            <ul>
+              <li> <span id="date"></span></li>
+              <li id="description"></li>
             </ul>
           </div>
-          
-
+          <div class="row">
+            <div class="col-6">
+              <div class="clearfix weather-temperature">
+                <img src="" alt="Clear" id="icon" class="float-left" />
+                <div class="float-left">
+                  <strong id="temperature"></strong
+                  ><span class="units"> 
+                    <a href="#" id="Celsius_link" class="active"> °C</a> | <a href="#" id="Fahrengeit_link"> °F</a> 
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li> Pressure:<span id="pressure"></span> mb</li>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> m/h</li>
+              </ul>
+            </div>
           </div>
-         
-        </div>  
+          <div class="weather-forecast" id="forecast"></div>
+        </div>
+        <a href="https://github.com/NST22/git#bottom">Open-source code</a><span>, by Nataliia Steblii</span>
+      </div>
+    </div>
+    <script>
+      function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-</div>
-<script>
-    function displayWeatherCondition(response) {
-                 document.querySelector("#City").innerHTML = `${response.data.name}, ${response.data.sys.country}`;
-                 document.querySelector("#temperature1").innerHTML = Math.round(response.data.main.temp);
-                 document.querySelector("#Wind").innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
-                 document.querySelector("#Precipitation").innerHTML = `Precipitation: ${Math.round(response.data.main.feels_like)}%`;
-                 document.querySelector("#Humidity").innerHTML = `Humidity: ${Math.round(response.data.main.humidity)}%`;
-                
-             }
-              function searchCity(city) {
-                 let apiKey = "28b4072a3707912bbb850ae1af6cce31";
-                 let units = "metric";
-                 let Url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-                 axios.get(Url).then(displayWeatherCondition);
-             }
- 
-             function handleSubmit(event) {
-                 event.preventDefault();
-                 let city = document.querySelector("#search-city").value;
-                 searchCity(city);
-             }
-         let form = document.querySelector("#Search");
-         form.addEventListener("click", handleSubmit);
- 
-         function clickCelcius(event) {
-             event.preventDefault();
-             let clickCelcius = document.querySelector("#temperature1");
-             clickCelcius.innerHTML = 19;
-         }
- 
-         function clickFahrenheit(event) {
-             event.preventDefault();
-             let clickFahrenheit = document.querySelector("#temperature1");
-             clickFahrenheit.innerHTML = 66;
-         }
- 
-        
-         let myCode = "28b4072a3707912bbb850ae1af6cce31";
-         function CityTemperature(response){
-            console.log(response.data.main.temp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day} ${hours}:${minutes}`;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2">
+        <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temp.max
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
+        </div>
+      </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecast(coordinates) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayTemperature(response) {
+  let temperatureElement = document.querySelector("#temperature");
+  let cityElement = document.querySelector("#city");
+  let descriptionElement = document.querySelector("#description");
+  let humidityElement = document.querySelector("#humidity");
+  let windElement = document.querySelector("#wind");
+  let PressureElement = document.querySelector("#pressure")
+  let dateElement = document.querySelector("#date");
+  let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  cityElement.innerHTML = response.data.name;
+  descriptionElement.innerHTML = response.data.weather[0].description;
+  humidityElement.innerHTML = response.data.main.humidity;
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  PressureElement.innerHTML = response.data.main.pressure;
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
+
+  getForecast(response.data.coord);
+}
+
+function search(city) {
+  let apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+function displayFahrengeitTemp(event){
+  event.preventDefault();
+  let TemperatureElement = document.querySelector("#temperature");
+  CelsiusLink.classList.remove("active");
+  FahrengeitLink.classList.add("active");
+  let FahrengeitTemp = TemperatureElement.innerHTML*9/5+32;
+  TemperatureElement.innerHTML = Math.round(FahrengeitTemp);
+
+}
+
+function displayCelsiusTemp(event){
+  event.preventDefault();
+  let TemperatureElement = document.querySelector("#temperature");
+  FahrengeitLink.classList.remove("active");
+  CelsiusLink.classList.add("active");
+  TemperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+let myCode = "5f472b7acba333cd8a035ea85a0d4d4c";
+function CityTemperature(response){
             let temperature = Math.round(response.data.main.temp);
             let city = response.data.name;
             let result = `${temperature}`
-            let h1 = document.querySelector("#temperature1");
+            let h1 = document.querySelector("#temperature");
             h1.innerHTML = result;
             let result2 = `${city}`
-            let h2 = document.querySelector("#City");
+            let h2 = document.querySelector("#city");
             h2.innerHTML = result2;
-            
         }
-        function showPosition(position){
-              let lat = position.coords.latitude;
-               let lon = position.coords.longitude;
-               let Url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myCode}&units=metric`;
-               axios.get(Url).then(CityTemperature);
-               
+function showPosition(position){
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        let Url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myCode}&units=metric`;
+        axios.get(Url).then(CityTemperature);
+        }
+function CurrentLocationCity(event) {
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition(showPosition);
         }
 
-            function CurrentLocationCity(event) {
-                 event.preventDefault();
-                 navigator.geolocation.getCurrentPosition(showPosition);
-        }
-            
-        let CurrentLocation = document.querySelector("#CurrentLocation");
-         CurrentLocation.addEventListener("click",CurrentLocationCity);
-         
-        searchCity("Kyiv");
- </script>
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
 
-    <script>
-     
-                   
-     function convertToF(event) {
-            // make the given fahrenheit variable equal the given celsius value
-            // multiply the given celsius value by 9/5 then add 32
-            event.preventDefault();
-            let fTemp = document.querySelector("#temperature1"); 
-            fTemp.innerHTML = 66;
-        }
-        let Far = document.querySelector("#Fahrenheit");
-        Far.addEventListener("click", convertToF);
-        function convertToC(event) {
-            event.preventDefault();
-            // make the given fahrenheit variable equal the given celsius value
-            // multiply the given celsius value by 9/5 then add 32
-            let cTemp = document.querySelector("#temperature1"); 
-            cTemp.innerHTML = 19;
-        }
-        let Cel = document.querySelector("#Celsium");
-        Cel.addEventListener("click", convertToC)
-     
-    
+let FahrengeitLink = document.querySelector("#Fahrengeit_link");
+FahrengeitLink.addEventListener("click", displayFahrengeitTemp);
+
+let CelsiusLink = document.querySelector("#Celsius_link");
+CelsiusLink.addEventListener("click", displayCelsiusTemp);
+
+let CurrentLocation = document.querySelector("#CurrentLocation");
+CurrentLocation.addEventListener("click",CurrentLocationCity);
+
+search("Kyiv");
     </script>
-    
-    <a href="https://github.com/NST22/git#bottom">Open-source code</a><span>, by Natalii Steblii</span>
 
-
-
-</body>
+  </body>
 </html>
