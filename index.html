@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<style>
+   body {
+  background-image: url('https://images.unsplash.com/photo-1541119638723-c51cbe2262aa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=873&q=80');
+
+
+  background-size: 100%;
+}
+   .first{
+      margin-right: 0;
+      display:inline-block;
+      text-align: center;
+      margin-left: 30px;
+      
+   }
+   .firstOne{
+      color:darkblue;
+      text-decoration: solid;
+      text-shadow: 2px 2px beige;
+      font-size: 40px;
+      font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+   }
+   h4{
+      
+      font-family: 'Times New Roman', Times, serif;
+      color:black;
+
+   }
+   .three{
+      text-align: right;
+      margin-left: 70%;
+      display:inline-block;
+   }
+   .four{
+      margin-left: 0px;   
+      color: #08519c;
+      text-decoration: solid;
+      text-shadow: 1px 1px #6baed6;
+      font-size: 25px;
+      font-family: 'Times New Roman', Times, serif;  
+      text-align: left;
+      
+   }
+   h2{
+      font-size: 50px;
+      text-align: left;
+      color: blue;
+      text-shadow: 1px 1px darkblue;
+      font-family: 'Times New Roman', Times, serif;
+   }
+  
+   .fourOne{
+      padding: 0%;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: 80%;
+   }
+   .temperature{
+    font-size: 20px;
+    vertical-align: top;
+   }
+   .weather{
+    width: 70px;
+   }
+   .container{
+    width: 1000px;
+    height: 600px;
+   } 
+</style>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+   <div class="container">
+    
+    <form id = "search-form" 
+    action="" 
+    style="margin-left: 30px; margin-top: 50px; font-family:'Times New Roman', Times, serif">
+        <input type="search" 
+        placeholder="Input a city" 
+        autofocus = "on" id ="search-city">
+       
+         <button id="Search"> Search</button>
+        <button id="CurrentLocation"> Current location</button>
+    
+    </form>
+    
+   
+     <div class="first">
+        <h1 class="firstOne" id="City">
+            Kyiv, Ukraine
+        </h1>    
+       
+   </div>
+   
+   
+ <hr>
+ <div style="margin-left: 30px">
+   <h3 style="font-family:'Times New Roman', Times, serif"></h3> 
+   <script>
+    let now = new Date();
+    let h3 = document.querySelector("h3");
+    let day = now.getDay();
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    function pad(value){
+        if (value<10) {
+            return '0'+ value;
+        }
+        else {
+            return value;
+        }
+    }  
+    //let second = now.getSeconds();
+
+    let Weeks = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+        ];
+    let Days = Weeks[now.getDay()];
+    let minutes1 = pad(minutes);
+    let hours1 = pad(hours);
+    h3.innerHTML = `${Days} ${hours1}:${minutes1}`;
+    
+    
+        </script>
+   <div>
+    <h5 style="font-family:'Times New Roman', Times, serif">Cloudy</h5>
+    
+   </div>
+ </div> 
+ <br>
+ <div style="margin-left: 30px">
+    <div class="container text-left" style="margin:0px">
+        <div class="row align-items-start" >
+          <div class="col-6" style="margin-left:0px; width:70px">
+            <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="Cloudy icon" class="weather">
+            
+            
+          </div>
+          <div class="col-6" style="width:150px">
+            <span id="temperature1" style="font-size:50px; font-family:'Times New Roman', Times, serif">
+                19 
+                   </span>
+                   <span class="temperature">
+                   <a href="#" id="Celsium">°C</a> |
+                   <a href="#" id="Fahrenheit">°F</a>
+                   </span>
+                   
+          </div>
+          <div class="col-6" style="margin-left:70px">
+            <ul  style="font-size:20px; font-family:'Times New Roman', Times, serif; margin-left: 2px; text-align: left; color: #08519c;
+            text-decoration: solid;
+            text-shadow: 1px 1px #6baed6; list-style-type:none;">
+                <li id="Precipitation">
+                    Precipitation: 0% 
+                </li>
+                <li id="Humidity">
+                    Humidity: 61 %
+                </li>
+                <li id="Wind">
+                    Wind: 18 km/h
+                </li>
+            </ul>
+          </div>
+          
+
+          </div>
+         
+        </div>  
+
+</div>
+<script>
+    function displayWeatherCondition(response) {
+                 document.querySelector("#City").innerHTML = `${response.data.name}, ${response.data.sys.country}`;
+                 document.querySelector("#temperature1").innerHTML = Math.round(response.data.main.temp);
+                 document.querySelector("#Wind").innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+                 document.querySelector("#Precipitation").innerHTML = `Precipitation: ${Math.round(response.data.main.feels_like)}%`;
+                 document.querySelector("#Humidity").innerHTML = `Humidity: ${Math.round(response.data.main.humidity)}%`;
+                
+             }
+              function searchCity(city) {
+                 let apiKey = "28b4072a3707912bbb850ae1af6cce31";
+                 let units = "metric";
+                 let Url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+                 axios.get(Url).then(displayWeatherCondition);
+             }
+ 
+             function handleSubmit(event) {
+                 event.preventDefault();
+                 let city = document.querySelector("#search-city").value;
+                 searchCity(city);
+             }
+         let form = document.querySelector("#Search");
+         form.addEventListener("click", handleSubmit);
+ 
+         function clickCelcius(event) {
+             event.preventDefault();
+             let clickCelcius = document.querySelector("#temperature1");
+             clickCelcius.innerHTML = 19;
+         }
+ 
+         function clickFahrenheit(event) {
+             event.preventDefault();
+             let clickFahrenheit = document.querySelector("#temperature1");
+             clickFahrenheit.innerHTML = 66;
+         }
+ 
+        
+         let myCode = "28b4072a3707912bbb850ae1af6cce31";
+         function CityTemperature(response){
+            console.log(response.data.main.temp);
+            let temperature = Math.round(response.data.main.temp);
+            let city = response.data.name;
+            let result = `${temperature}`
+            let h1 = document.querySelector("#temperature1");
+            h1.innerHTML = result;
+            let result2 = `${city}`
+            let h2 = document.querySelector("#City");
+            h2.innerHTML = result2;
+            
+        }
+        function showPosition(position){
+              let lat = position.coords.latitude;
+               let lon = position.coords.longitude;
+               let Url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myCode}&units=metric`;
+               axios.get(Url).then(CityTemperature);
+               
+        }
+
+            function CurrentLocationCity(event) {
+                 event.preventDefault();
+                 navigator.geolocation.getCurrentPosition(showPosition);
+        }
+            
+        let CurrentLocation = document.querySelector("#CurrentLocation");
+         CurrentLocation.addEventListener("click",CurrentLocationCity);
+         
+        searchCity("Kyiv");
+ </script>
+
+    <script>
+     
+                   
+     function convertToF(event) {
+            // make the given fahrenheit variable equal the given celsius value
+            // multiply the given celsius value by 9/5 then add 32
+            event.preventDefault();
+            let fTemp = document.querySelector("#temperature1"); 
+            fTemp.innerHTML = 66;
+        }
+        let Far = document.querySelector("#Fahrenheit");
+        Far.addEventListener("click", convertToF);
+        function convertToC(event) {
+            event.preventDefault();
+            // make the given fahrenheit variable equal the given celsius value
+            // multiply the given celsius value by 9/5 then add 32
+            let cTemp = document.querySelector("#temperature1"); 
+            cTemp.innerHTML = 19;
+        }
+        let Cel = document.querySelector("#Celsium");
+        Cel.addEventListener("click", convertToC)
+     
+    
+    </script>
+    
+    <a href="https://github.com/NST22/git#bottom">Open-source code</a><span>, by Natalii Steblii</span>
+
+
+
+</body>
+</html>
