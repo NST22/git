@@ -40,6 +40,7 @@ li {
   font-size: 16px;
   font-weight: 100;
   line-height: 19px;
+  font-weight: bold;
 }
 
 li:first-letter {
@@ -58,6 +59,7 @@ li:first-letter {
     padding: 15px;
     border: 1px solid black;
     border-radius: 10px;
+    background-color:lightskyblue;
    }
 
 .overview {
@@ -100,7 +102,7 @@ li:first-letter {
 
 .weather-forecast-date {
   font-size: 16px;
-  opacity: 0.5;
+  opacity: 0.9;
 }
 
 .weather-forecast-temperature-min {
@@ -109,6 +111,13 @@ li:first-letter {
 
 .weather-forecast-temperatures {
   font-size: 13px;
+}
+button{
+  color: white;
+  font-weight: bold;
+  height: 40px;
+  border-radius: 10px;
+  background-color: darkblue;
 }
     </style>
     <title>Weather App</title>
@@ -161,9 +170,9 @@ li:first-letter {
             </div>
             <div class="col-6">
               <ul>
-                <li> Pressure:<span id="pressure"></span> mb</li>
+                <li> Pressure: <span id="pressure"></span> mbar</li>
                 <li>Humidity: <span id="humidity"></span>%</li>
-                <li>Wind: <span id="wind"></span> m/h</li>
+                <li>Wind speed: <span id="wind"></span> mph</li>
               </ul>
             </div>
           </div>
