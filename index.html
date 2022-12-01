@@ -118,6 +118,8 @@ button{
   height: 40px;
   border-radius: 10px;
   background-color: darkblue;
+  margin-left: 70px;
+  width: 120px;
 }
     </style>
     <title>Weather App</title>
@@ -144,9 +146,7 @@ button{
                 <div class="col-2">
                     <button id="Search"> Search </button>          
                 </div>
-                <div>
-                    <button id="CurrentLocation"> Current location</button>
-                </div>
+                
             </div>
           
           <div class="overview">
@@ -314,27 +314,6 @@ function displayCelsiusTemp(event){
   CelsiusLink.classList.add("active");
   TemperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
-let myCode = "5f472b7acba333cd8a035ea85a0d4d4c";
-function CityTemperature(response){
-            let temperature = Math.round(response.data.main.temp);
-            let city = response.data.name;
-            let result = `${temperature}`
-            let h1 = document.querySelector("#temperature");
-            h1.innerHTML = result;
-            let result2 = `${city}`
-            let h2 = document.querySelector("#city");
-            h2.innerHTML = result2;
-        }
-function showPosition(position){
-        let lat = position.coords.latitude;
-        let lon = position.coords.longitude;
-        let Url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${myCode}&units=metric`;
-        axios.get(Url).then(CityTemperature);
-        }
-function CurrentLocationCity(event) {
-        event.preventDefault();
-        navigator.geolocation.getCurrentPosition(showPosition);
-        }
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
@@ -345,8 +324,7 @@ FahrengeitLink.addEventListener("click", displayFahrengeitTemp);
 let CelsiusLink = document.querySelector("#Celsius_link");
 CelsiusLink.addEventListener("click", displayCelsiusTemp);
 
-let CurrentLocation = document.querySelector("#CurrentLocation");
-CurrentLocation.addEventListener("click",CurrentLocationCity);
+
 
 search("Kyiv");
     </script>
